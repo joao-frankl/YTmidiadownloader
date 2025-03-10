@@ -1,5 +1,14 @@
 import os
-import yt_dlp
+import sys
+import subprocess
+
+# Verifica se o yt_dlp está instalado
+try:
+    import yt_dlp
+except ImportError:
+    print("Módulo yt_dlp não encontrado. Instalando...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "yt-dlp"])
+    import yt_dlp  # Importa novamente após a instalação
 
 def baixar_video(url, somente_audio=False):
     """
